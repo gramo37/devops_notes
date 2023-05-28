@@ -1,0 +1,55 @@
+Why learn Devops ?
+
+1) Fast Delivery
+2) Higher Quality
+3) Less Capex + Opex
+4) Reduced Outage 
+
+Software Development Life cycle
+1) Developer develops code  ->  2) build the code(.exe)  ->  3) Testing  ->  4) Quality Assurance  ->  5) Deploy  ->  6) Maintainance  ->  7) Monitoring
+
+1, 2, 3, 4  ->  Development team / offshore
+5, 6, 7  -> Operations team / onsite
+
+Tools used in SDLC
+Build is done by Maven.
+Jenkins is for automating the CI/CD pipeline.
+Testing is done by selenium.
+Deploy   ->  Chef / ansible / kubernetes / docker / puppet
+Monitoring  ->  Nagios / cloudwatch
+
+
+Waterfall methodology  ->  Agile  ->  Devops
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Learn Devops 
+Learn AWS and take certification
+Ask for work in CI/CD where devops is used
+Gain experience and ask for WFH
+Create resume and start applying to remote jobs and earn upto 40 LPA
+Invest 35 LPA -> 3.5Cr in 7 years -> Financial freedom in 7 years -> Fuck working again
+

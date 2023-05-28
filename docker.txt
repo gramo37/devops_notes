@@ -1,0 +1,62 @@
+-> Docker is an Open source Platform designed to create, deploy and run applications.
+-> Docker uses Container on the host OS to run applications. It allows applications to use the same  linux kernel as a system on the host computer, rather than creating a whole virtual OS.
+-> We can install docker on any OS but Docker engine runs natively on linux distribution.
+-> Docker is written in go language
+-> Docker is a tool that performs OS level virtualization, also known as containerization.
+-> Before Docker many users faced the problem that a particular code is running in the developer's system but not on the testing/production environment.
+-> Docker is a set of Platform as a Service that uses OS level virtualization, whereas VMware uses Haardware level Virtualization.
+
+Working of VM ware (Hardware level Virtualization)
+
+VM ware has a Hyperviser between the hardware and the Virtual Machine. The Virtual Machines are allocated some resources (RAM, ROM, processor, etc) from the Hardware. The only problem here is that a resource allocated to one Virtual Machine cannot be used by other Virtual Machine, even if it is not currently being used by it. This is a waste of resources.
+
+Eg -> If 2 VM are allocated 4 GB RAM each out of 8GB Total RAM of the Host, and 1 VM wants to use 6 GB RAM for a certain task, it cannot do that even if the RAM is free as it is only allocated 4 GB RAM.
+------------  ------------
+| VM       |  | VM       | 
+| RAM 4 GB |  | RAM 4 GB |    <--  Virtual Machines
+|          |  |          |
+------------  ------------
+-----------------
+| Hypervisor    |
+| (Type 1)      |
+|               |
+-----------------
+-----------------
+|               |
+| Hardware(RAM, |
+| ROM,Processor)|
+-----------------
+
+------------------
+Working of Docker Engine (OS level virtualization)
+
+The Docker Engine creates containers using the images downloaded from the docker hub. These containers also have the image downloaded from the docker hub. A image is basically a portion of code that is required by the container which is missing from the Host OS. Eg -> If we want to run ubuntu on a container and the Host OS is Red Hat then after downloading the image of ubuntu from the docker hub, we can run the ubuntu code on the Host OS.
+
+A container does not contain any OS of it's own, but it contains a small portion of the OS such that after using the Host OS it becomes a complete OS.
+
+Required OS portion in container + Host OS = Contanier which allows you to run code in the required OS.
+
+As only a portion of OS (usually size of these images is 5% of the actual OS) is required, containers are very lightweight as compared to virtual machines.
+
+So basically in this concept we are not sharing the hardware resources. The hardware resources are allocated to the Host OS and we are just running different containers by downloading the required code for that OS. 
+
+------------  ------------
+| Ubuntu   |  |  Kali    | 
+|          |  |          |    <--  Containers
+| image    |  |          |
+------------  ------------
+-----------------
+|  Docker       |
+|  Engine       |
+|               |
+-----------------
+-----------------
+| Operating     |
+| System        |
+|               |
+-----------------
+-----------------
+|               |
+| Hardware(RAM, |
+| ROM,Processor)|
+-----------------
