@@ -30,7 +30,7 @@ Eg -> If 2 VM are allocated 4 GB RAM each out of 8GB Total RAM of the Host, and 
 ------------------
 Working of Docker Engine (OS level virtualization)
 
-The Docker Engine creates containers using the images downloaded from the docker hub. These containers also have the image downloaded from the docker hub. A image is basically a portion of code that is required by the container which is missing from the Host OS. Eg -> If we want to run ubuntu on a container and the Host OS is Red Hat then after downloading the image of ubuntu from the docker hub, we can run the ubuntu code on the Host OS.
+The Docker Engine creates containers using the images downloaded from the docker hub. These containers have a small portion of code that makes the required OS complete. Eg -> If we want to run ubuntu on a container and the Host OS is Red Hat then after downloading the image of ubuntu from the docker hub, we can run the ubuntu code on the Host OS.
 
 A container does not contain any OS of it's own, but it contains a small portion of the OS such that after using the Host OS it becomes a complete OS.
 
@@ -40,10 +40,12 @@ As only a portion of OS (usually size of these images is 5% of the actual OS) is
 
 So basically in this concept we are not sharing the hardware resources. The hardware resources are allocated to the Host OS and we are just running different containers by downloading the required code for that OS. 
 
+If the host OS is windows then docker cannot run on it, we will have to download docker windows tool to run docker on windows.
+
 ------------  ------------
 | Ubuntu   |  |  Kali    | 
 |          |  |          |    <--  Containers
-| image    |  |          |
+|part of OS|  |part of OS|
 ------------  ------------
 -----------------
 |  Docker       |
@@ -60,3 +62,73 @@ So basically in this concept we are not sharing the hardware resources. The hard
 | Hardware(RAM, |
 | ROM,Processor)|
 -----------------
+
+A container is a running state of an image. We share these images to different teams during the deployment process(build -> testing -> deploying etc.). This solves the problem of a code running on one's machine and not running on other person's machine.
+
+An image is like a template/screenshot of the container, so no changes can be made to it. But the container can be changed and a new image can be made from it.
+
+Advantages of Docker
+
+-> No pre-allocation of RAM. Complete RAM is allocated to Host OS.
+-> Continuous Integration Efficiency -> Docker enables you to build a container image and use that same image across every step of the deployment process.
+-> Less Cost
+-> Light Weight
+-> Can run on Physical Hardware / Virtual H/W or on cloud
+-> You can reuse the image
+-> Containers can be created easily and in less time as compared to Virtual machines.
+
+Disadvantages of Docker
+
+-> Docker does not provide cress=platform compatibility. If an application is designed to run in a docker container on windows, then it can't run on linux or vice versa.
+-> Docker is suitable when the  development OS and testing OS are the same. If the OS are different we must use Virtual Machines.
+-> Docker is not a good option for applications which require rich GUI.
+-> Difficult to manage large amount of containers.
+-> No solution for Data Recovery and Backup.
+
+Docker Architecture 
+
+Developer creates a docker file, which is run on the docker engine. Docker Engine creates an image from this file and later on engine creates a container using the image.
+
+Container is a layered file system -> All the files / packages are downloaded one after the other. eg -> Ubuntu installation -> git installation -> chef installation  ->  and so on
+
+Docker Ecosystem -> A set of software/packages which create a container
+
+1) Docker Client  
+->  Dockers can interact with docker daemon through a Client (CLI).
+-> Docker Client uses commands and rest API to communicate with the docker daemon.
+-> When a user runs any server command on the docker client terminal, the Client terminal sends these docker commands to the docker daemon.
+-> It is possible for the docker client to communicate with more than one daemon.
+
+2) Docker Daemon / Engine  
+->  Executes the commands given by the user. This engine creates images and containers.
+-> Docker Daemon runs on the host OS.
+-> It is  responsible for running containers to manage docker services.
+-> Docker Daemon can communicate with other daemons present on some other machine.
+
+3) Docker Hub / Registry  
+->  A storage for all images
+
+4) Docker Images  
+->  It is like a template which is used to create containers.
+
+5) Docker Compose  
+->  Using this we can run many docker containers.
+
+Docker Host -> It is used to provide an environment to execute and run applications. It contains the docker daemon, images, containers, networks and storages.
+
+Docker Hub/Registry -> It stores and manages the docker images. There are 2 types of registries in docker.
+1) Public Registry -> It is also called as Docker Hub
+2) Private Registry -> It is used to share images within the enterprize.
+
+Docker images -> They are the read only templates used to create containers. 
+It is a single file with all dependencies and configuration to run a container.
+
+Ways to create containers ->
+1) Take image from docker hub
+2) Create image from docker file
+3) Create image from existing docker containers.
+
+Docker Container -> 
+1) Container held the entire packages that is needed to run the application. In other words, we can say that the image is a template and the container is a copy of that template.
+2) Container is like a Virtual Machine.
+3) Images becomes Container when they run on Docker Engine.
